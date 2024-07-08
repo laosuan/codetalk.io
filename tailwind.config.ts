@@ -15,6 +15,7 @@ const brand = {
 };
 
 const black = {
+  0: "#000000",
   50: "#f7f7f8",
   100: "#efeef0",
   200: "#dbd9de",
@@ -131,6 +132,10 @@ module.exports = {
         table: "var(--background-table)",
         menu: "var(--background-menu)",
       },
+      borderColor: {
+        subtle: "var(--border-subtle)",
+        "subtle-extra": "var(--border-subtle-extra)",
+      },
       colors: {
         subtle: "var(--text-subtle)",
         headline: "var(--text-headline)",
@@ -138,9 +143,6 @@ module.exports = {
         link: {
           DEFAULT: "var(--link-color)",
           hover: "var(--link-color-hover)",
-        },
-        border: {
-          subtle: "var(--border-subtle)",
         },
         dark: {
           text: black["50"],
@@ -152,7 +154,7 @@ module.exports = {
             visited: blue["500"],
           },
           background: {
-            DEFAULT: "#0E1116",
+            DEFAULT: "#000",
             // GitHub style background for code blocks (original #171B22).
             code: "#171B22",
             "code-highlight": "#bb800926",
@@ -163,7 +165,8 @@ module.exports = {
             menu: "#6e768166",
           },
           border: {
-            subtle: "#6e768166",
+            subtle: black["600"],
+            "subtle-extra": "#96919f36",
           },
         },
         light: {
@@ -188,6 +191,7 @@ module.exports = {
           },
           border: {
             subtle: "#afb8c133",
+            "subtle-extra": "#96919f36",
           },
         },
         brand, // Orange is the brand color.

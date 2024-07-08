@@ -17,6 +17,7 @@
   --background-table: theme("colors.light.background.table");
   --background-menu: theme("colors.light.background.menu");
   --border-subtle: theme("colors.light.border.subtle");
+  --border-subtle-extra: theme("colors.light.border.subtle-extra");
   --link-color: theme("colors.light.link.DEFAULT");
   --link-color-hover: theme("colors.light.link.hover");
   --link-color-visited: theme("colors.light.link.visited");
@@ -39,6 +40,7 @@
     --background-table: theme("colors.dark.background.table");
     --background-menu: theme("colors.dark.background.menu");
     --border-subtle: theme("colors.dark.border.subtle");
+    --border-subtle-extra: theme("colors.dark.border.subtle-extra");
 
     --link-color: theme("colors.dark.link.DEFAULT");
     --link-color-hover: theme("colors.dark.link.hover");
@@ -142,6 +144,35 @@ a.external-link-subtle {
   text-decoration: none !important;
 }
 
+.border-snapshot {
+  @apply relative xl:p-16 md:p-12 px-4 py-8;
+}
+.border-snapshot-with-content {
+  @apply relative xl:px-16 md:px-12 px-4 py-4 mb-20;
+  .styling-full {
+    @apply mb-4;
+  }
+}
+.border-snapshot-with-content::before,
+.border-snapshot::before,
+.border-snapshot-with-content::after,
+.border-snapshot::after {
+  @apply absolute;
+  /* The size of the borders */
+  width: 20px;
+  height: 20px;
+  /* The empty string is necessary for these to show up */
+  content: "";
+}
+.border-snapshot-with-content::before,
+.border-snapshot::before {
+  @apply top-0 left-0 border-t border-l border-solid border-subtle;
+}
+.border-snapshot-with-content::after,
+.border-snapshot::after {
+  @apply bottom-0 right-0 border-b border-r border-solid border-subtle;
+}
+
 h1,
 h2,
 h3,
@@ -163,7 +194,7 @@ code {
   background-color: var(--background-inline-code);
 }
 pre {
-  @apply text-xs text-wrap leading-6 mt-4 mb-6 border rounded-md !important;
+  @apply text-xs text-wrap leading-6 mt-4 mb-6 border rounded-md overflow-x-scroll;
   font-family: theme("fontFamily.code") !important;
   background-color: var(--background) !important;
   border-color: var(--background-inline-code) !important;
@@ -274,6 +305,19 @@ pre[data-linenos] {
   left: anchor(bottom);
   margin-top: 55px;
   margin-right: 20px;
+  z-index: 100;
+}
+
+@supports not selector(:popover-open) {
+  #table-of-contents-menu {
+    display: none;
+  }
+  #table-of-contents-menu-overlay {
+    display: none;
+  }
+  #table-of-contents-sidebar-popover {
+    display: none;
+  }
 }
 
 .about-timeline-date {
@@ -297,7 +341,7 @@ pre[data-linenos] {
   font-family: theme("fontFamily.sans");
 
   h1 {
-    @apply text-5xl mt-12;
+    @apply sm:text-5xl text-3xl mt-12;
     color: var(--text-primary);
     text-decoration: none;
     a,
@@ -344,7 +388,7 @@ pre[data-linenos] {
   }
 
   p {
-    @apply mt-4;
+    @apply mt-4 break-words;
   }
 
   ul,
@@ -394,7 +438,7 @@ pre[data-linenos] {
   > center > table,
   > left > table,
   > right > table {
-    @apply mx-auto table-auto text-sm text-wrap leading-6 mt-4 mb-6 border border-separate border-spacing-0 rounded-md overflow-x-scroll block max-w-screen-md;
+    @apply mx-auto table-auto text-sm text-wrap leading-6 mt-4 mb-6 border border-separate border-spacing-0 rounded-md overflow-x-scroll block max-w-screen-md sm:w-fit;
     background-color: var(--background);
     border-color: var(--border-subtle);
 
@@ -438,5 +482,11 @@ pre[data-linenos] {
     p {
       @apply mt-0 inline-block text-xs;
     }
+  }
+}
+
+aside {
+  blockquote {
+    @apply !shadow-none !border-none;
   }
 }
